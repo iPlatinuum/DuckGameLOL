@@ -14,6 +14,13 @@ cloud_bg_2 = pygame.image.load("Cloud2.png")
 crosshair= pygame.image.load("crosshair.png")
 duck_surface = pygame.image.load("duck.png")
 
+gunshot_sound = pygame.mixer.Sound("Gun_SFX.wav")
+duck_die = pygame.mixer.Sound("Duck_Quack.wav")
+
+
+music = pygame.mixer.music.load("Duck_ Music.mp3")
+pygame.mixer.music.play(-1)
+
 
 game_font = pygame.font.Font(None,60)
 text_surface = game_font.render('U killed all the ducks :(',True,(255,255,255))
@@ -46,7 +53,9 @@ while True:
         if event.type == pygame.MOUSEBUTTONDOWN:
             for index,duck_rect in enumerate(duck_list):
                 if duck_rect.collidepoint(event.pos):
-                    del duck_list[index]   
+                    del duck_list[index]  
+                    gunshot_sound.play()
+                    duck_die.play() 
 
 
 
